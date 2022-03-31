@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kdrama_db/detail_screen.dart';
-import 'package:kdrama_db/model/tourism_place.dart';
+import 'package:kdrama_db/model/kdrama.dart';
  
-
-
 class MainScreen extends StatelessWidget {
 
   late final ThemeData? darkTheme;
@@ -15,15 +13,17 @@ class MainScreen extends StatelessWidget {
          title: const Text('KDrama DB'),
       ),
       body: LayoutBuilder(
+      
          builder: (BuildContext context, BoxConstraints constraints) {
           if (constraints.maxWidth <= 600) {
             return TourismPlaceList();
           } else if (constraints.maxWidth <= 1200) {
             return TourismPlaceGrid(gridCount: 3);
           } else {
-            return TourismPlaceGrid(gridCount: 6);
+            return TourismPlaceGrid(gridCount: 4);
           }
         },
+      
       ),
     );
   }
@@ -33,7 +33,7 @@ class TourismPlaceList extends StatelessWidget {
   Widget build(BuildContext context) {
      return ListView.builder(
         itemBuilder: (context, index) {
-          final KDrama place = dramaList[index];
+          final DramaItem place = dramaList[index];
           return InkWell(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -63,6 +63,7 @@ class TourismPlaceList extends StatelessWidget {
                             height: 10,
                           ),
                           Text(place.year),
+                          Icon(Icons.star),
                         ],
                       ),
                     ),
@@ -109,20 +110,55 @@ class TourismPlaceGrid extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Text(
-                          place.name,
-                          style: const TextStyle(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        child: Row(
+                          children: [
+                            Column(
+                              children: [
+                                 Text(
+                                    place.name,
+                                    style: const TextStyle(
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                              ],
+                            ),
+                            Text(' '),
+                            Column(
+                              children: [
+                                 Text(
+                                  place.year,
+                                ),
+                              ],
+                            )
+                          ],
                         ),
+                        padding: const EdgeInsets.only(left: 8.0),
+                       
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
-                        child: Text(
-                          place.year,
+                        child: Row(
+                          children: [
+                            Column(
+                              children: [
+                                Icon(Icons.star, color: Color.fromARGB(255, 209, 190, 19),)
+                              ],
+                            ),
+                            Text(' '),
+                            Column(
+                              children: [
+                               Text(
+                                place.rate,
+                                 style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                               )
+                              ],
+                            )
+                          ],
                         ),
+                        padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
+                        
                       ),
                     ],
                   ),

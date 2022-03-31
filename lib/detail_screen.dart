@@ -1,14 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:kdrama_db/model/tourism_place.dart';
+import 'package:kdrama_db/model/kdrama.dart';
 
-import 'model/tourism_place.dart';
+import 'model/kdrama.dart';
 
 var informationTextStyle = TextStyle(fontFamily: 'Oxygen');
 
 class DetailScreen extends StatelessWidget {
-  final KDrama place;
+  final DramaItem place;
 
   DetailScreen({required this.place});
 
@@ -27,7 +27,7 @@ class DetailScreen extends StatelessWidget {
 }
 
 class DetailMobilePage extends StatelessWidget {
-  final KDrama place;
+  final DramaItem place;
 
   DetailMobilePage({required this.place});
 
@@ -59,7 +59,7 @@ class DetailMobilePage extends StatelessWidget {
                             },
                           ),
                         ),
-                        LikeButton(),
+                        RateButton(),
                       ],
                     ),
                   ),
@@ -145,7 +145,7 @@ class DetailMobilePage extends StatelessWidget {
 }
 
 class DetailWebPage extends StatefulWidget {
-  final KDrama place;
+  final DramaItem place;
 
   DetailWebPage({required this.place});
 
@@ -227,7 +227,7 @@ class _DetailWebPageState extends State<DetailWebPage> {
                                       ),
                                     ],
                                   ),
-                                  LikeButton(),
+                                  RateButton(),
                                 ],
                               ),
                               Row(
@@ -295,20 +295,21 @@ class _DetailWebPageState extends State<DetailWebPage> {
   }
 }
 
-class LikeButton extends StatefulWidget {
+class RateButton extends StatefulWidget {
   @override
-  _LikeButtonState createState() => _LikeButtonState();
+  _RateButtonState createState() => _RateButtonState();
 }
 
-class _LikeButtonState extends State<LikeButton> {
+class _RateButtonState extends State<RateButton> {
   bool isLike = false;
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
+      
       icon: Icon(
-        isLike ? Icons.favorite : Icons.favorite_border,
-        color: Colors.red,
+        isLike ? Icons.star : Icons.star_border,
+        color: Colors.yellow,
       ),
       onPressed: () {
         setState(() {
