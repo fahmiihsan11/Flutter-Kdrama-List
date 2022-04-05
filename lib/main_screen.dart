@@ -1,43 +1,131 @@
 import 'package:flutter/material.dart';
+import 'package:kdrama_db/about.dart';
 import 'package:kdrama_db/detail_screen.dart';
 import 'package:kdrama_db/model/kdrama.dart';
+import 'package:kdrama_db/coming_soon.dart';
  
 class MainScreen extends StatelessWidget {
+  final ButtonStyle flatButtonStyle = TextButton.styleFrom(
+      primary: Colors.white,
+      minimumSize: Size(88, 44),
+      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(2.0)),
+      ),
+
+    );
 
   late final ThemeData? darkTheme;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //  title: Text('Size: ${MediaQuery.of(context).size.width}'),
-         title: const Text('KDrama DB'),
+          title: const Text('KDrama DB'),
+          actions: <Widget>[
+                TextButton(
+                  style: flatButtonStyle,
+                  onPressed: () {
+                     Navigator.push(context, MaterialPageRoute(builder: (context) {return CarouselWithIndicatorDemo();}));
+                    }, 
+                  child: const Text('Coming Soon'),                
+                )
+          ],
+          
       ),
-      body: LayoutBuilder(
-      
-         builder: (BuildContext context, BoxConstraints constraints) {
-          if (constraints.maxWidth <= 600) {
-            return TourismPlaceList();
-          } else if (constraints.maxWidth <= 1200) {
-            return TourismPlaceGrid(gridCount: 3);
-          } else {
-            return TourismPlaceGrid(gridCount: 4);
-          }
-        },
-      
-      ),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.all(16),
+              width: double.infinity,
+              height: 60,
+              color: Color.fromARGB(255, 177, 177, 175),
+              child: const Text('Menu',
+                style: TextStyle(
+                  fontSize: 22,
+                  color: Color.fromARGB(255, 42, 42, 42)
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            ListTile(
+              onTap: () {
+                Navigator.of(context).pop();
+                // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MainScreen()));
+              },
+              leading: const Icon(
+                Icons.home,
+                size: 20
+              ),
+              title: const Text('Home',
+                style: TextStyle(
+                  fontSize: 20
+                ),
+              ),
+            ),
+             ListTile(
+               onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {return CarouselWithIndicatorDemo();}));
+               },
+              leading: const Icon(
+                Icons.play_arrow_rounded,
+                size: 20
+              ),
+              title: const Text('Coming Soon',
+                style: TextStyle(
+                  fontSize: 20
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {return About();}));
+              },
+              leading: const Icon(
+                Icons.info,
+                size: 20
+              ),
+              title: const Text('About',
+                style: TextStyle(
+                  fontSize: 20
+                ),
+              ),
+            ),
+          ],
+        ),
+       ),
+      body: 
+            LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+              if (constraints.maxWidth <= 790) {
+                return (
+                    KdramaList());      
+              } else if (constraints.maxWidth <= 1200) {
+                return (
+                    KdramaGrid(gridCount: 3));
+              } else {
+                return (
+                   KdramaGrid(gridCount: 4));   
+              }
+            },
+          ), 
     );
   }
 }
-class TourismPlaceList extends StatelessWidget {
+
+
+class KdramaList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
      return ListView.builder(
         itemBuilder: (context, index) {
-          final DramaItem place = dramaList[index];
+          final DramaItem item = dramaList[index];
           return InkWell(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return DetailScreen(place: place);
+                return DetailScreen(place: item);
               }));
             },
             child: Card(
@@ -46,7 +134,7 @@ class TourismPlaceList extends StatelessWidget {
                 children: <Widget>[
                   Expanded(
                     flex: 1,
-                    child: Image.asset(place.imageAsset),
+                    child: Image.asset(item.imageAsset),
                   ),
                   Expanded(
                     flex: 2,
@@ -55,15 +143,28 @@ class TourismPlaceList extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(
-                            place.name,
-                            style: const TextStyle(fontSize: 16.0),
+                           Text(
+                              item.name,
+                              style: const TextStyle(fontSize: 16.0),
+                           ),
+                          Row(
+                            children: [
+                              Column(
+                                children: const [
+                                   Icon(Icons.star, color: Color.fromARGB(255, 209, 190, 19)),
+                                ],
+                              ),
+                              const Text('  '),
+                              Column(
+                                  children: [
+                                    Text(item.rate),
+                                  ],
+                              )
+                            ],
                           ),
                          const  SizedBox(
-                            height: 10,
-                          ),
-                          Text(place.year),
-                          Icon(Icons.star),
+                            height: 8,
+                          ),             
                         ],
                       ),
                     ),
@@ -78,10 +179,9 @@ class TourismPlaceList extends StatelessWidget {
   }
 }
 
-class TourismPlaceGrid extends StatelessWidget {
+class KdramaGrid extends StatelessWidget {
   final int gridCount;
-
-  TourismPlaceGrid({required this.gridCount});
+  KdramaGrid({required this.gridCount});
 
   @override
   Widget build(BuildContext context) {
@@ -91,11 +191,11 @@ class TourismPlaceGrid extends StatelessWidget {
             crossAxisCount: gridCount,
            crossAxisSpacing: 16,
             mainAxisSpacing: 16,
-            children: dramaList.map((place) {
+            children: dramaList.map((item) {
               return InkWell(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return DetailScreen(place: place);
+                    return DetailScreen(place: item);
                   }));
                 },
                 child: Card(
@@ -104,7 +204,7 @@ class TourismPlaceGrid extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Image.asset(
-                          place.imageAsset,
+                          item.imageAsset,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -115,7 +215,7 @@ class TourismPlaceGrid extends StatelessWidget {
                             Column(
                               children: [
                                  Text(
-                                    place.name,
+                                    item.name,
                                     style: const TextStyle(
                                       fontSize: 16.0,
                                       fontWeight: FontWeight.bold,
@@ -123,32 +223,31 @@ class TourismPlaceGrid extends StatelessWidget {
                                   ),
                               ],
                             ),
-                            Text(' '),
+                            const Text(' '),
                             Column(
                               children: [
                                  Text(
-                                  place.year,
+                                  item.year,
                                 ),
                               ],
                             )
                           ],
                         ),
-                        padding: const EdgeInsets.only(left: 8.0),
-                       
+                        padding: const EdgeInsets.only(left: 8.0),     
                       ),
                       Padding(
                         child: Row(
                           children: [
                             Column(
-                              children: [
+                              children: const [
                                 Icon(Icons.star, color: Color.fromARGB(255, 209, 190, 19),)
                               ],
                             ),
-                            Text(' '),
+                            const Text(' '),
                             Column(
                               children: [
                                Text(
-                                place.rate,
+                                item.rate,
                                  style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -157,8 +256,7 @@ class TourismPlaceGrid extends StatelessWidget {
                             )
                           ],
                         ),
-                        padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
-                        
+                        padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),  
                       ),
                     ],
                   ),
@@ -169,3 +267,4 @@ class TourismPlaceGrid extends StatelessWidget {
     );
   }
 }
+

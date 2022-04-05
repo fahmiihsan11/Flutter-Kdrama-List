@@ -34,6 +34,16 @@ class DetailMobilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       appBar: AppBar(
+          title: const Text('K-Drama'),
+          automaticallyImplyLeading: false,
+          leading: IconButton (
+                        icon: Icon(Icons.arrow_back), 
+                        onPressed: () {Navigator.pop(context);
+                              /** Do something */ 
+                        },
+                    ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -41,29 +51,13 @@ class DetailMobilePage extends StatelessWidget {
             Stack(
               children: <Widget>[
                 Image.asset(place.imageAsset),
-                SafeArea(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.grey,
-                          child: IconButton(
-                            icon: Icon(
-                              Icons.arrow_back,
-                              color: Colors.white,
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                        ),
-                        RateButton(),
-                      ],
-                    ),
-                  ),
-                ),
+                // SafeArea(
+                //   child: Padding(
+                //     padding: const EdgeInsets.all(8.0),
+                //     child: Row(
+                //     ),
+                //   ),
+                // ),
               ],
             ),
             Container(
