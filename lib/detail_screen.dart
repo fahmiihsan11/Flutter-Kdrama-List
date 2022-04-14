@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:kdrama_db/model/kdrama.dart';
 
 import 'model/kdrama.dart';
+import 'my-list.dart';
 
 var informationTextStyle = TextStyle(fontFamily: 'Oxygen');
 
@@ -34,6 +35,11 @@ class DetailMobilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor:  Color.fromARGB(255, 209, 190, 19),
+      //   child: Icon(Icons.domain_verification),
+      //   onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) {return MyList(totalList: totalList)}))
+      // ),
        appBar: AppBar(
           title: const Text('K-Drama'),
           automaticallyImplyLeading: false,
@@ -51,13 +57,6 @@ class DetailMobilePage extends StatelessWidget {
             Stack(
               children: <Widget>[
                 Image.asset(place.imageAsset),
-                // SafeArea(
-                //   child: Padding(
-                //     padding: const EdgeInsets.all(8.0),
-                //     child: Row(
-                //     ),
-                //   ),
-                // ),
               ],
             ),
             Container(
@@ -131,6 +130,16 @@ class DetailMobilePage extends StatelessWidget {
                 ),
               ),
             ),
+             Container(
+                child: Text(''),
+            ),
+             Container(
+               child: Column(
+                children: [
+                  MyList(totalList: 0)
+                    ],
+              ),
+            )
           ],
         ),
       ),
@@ -155,6 +164,12 @@ class _DetailWebPageState extends State<DetailWebPage> {
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
+       floatingActionButton: FloatingActionButton(
+        backgroundColor:  Color.fromARGB(255, 209, 190, 19),
+        child: Icon(Icons.domain_verification),
+        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) {return MyListPage();}))
+      ),
+
       appBar: kIsWeb ? null : AppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -221,7 +236,7 @@ class _DetailWebPageState extends State<DetailWebPage> {
                                       ),
                                     ],
                                   ),
-                                  RateButton(),
+                                  // RateButton(),
                                 ],
                               ),
                               Row(
@@ -267,6 +282,16 @@ class _DetailWebPageState extends State<DetailWebPage> {
                                   ),
                                 ),
                               ),
+                              Container(
+                                child: Text(''),
+                              ),
+                              Container(
+                                child: Column(
+                                  children: [
+                                    MyList(totalList: 0)
+                                  ],
+                                ),
+                              )
                             ],
                           ),
                         ),
@@ -300,11 +325,11 @@ class _RateButtonState extends State<RateButton> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      
       icon: Icon(
-        isLike ? Icons.star : Icons.star_border,
-        color: Colors.yellow,
+        isLike ? Icons.domain_verification : Icons.add,
+        color: Color.fromARGB(255, 255, 255, 255),
       ),
+      
       onPressed: () {
         setState(() {
           isLike = !isLike;

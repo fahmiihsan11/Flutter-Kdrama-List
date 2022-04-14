@@ -3,6 +3,7 @@ import 'package:kdrama_db/about.dart';
 import 'package:kdrama_db/detail_screen.dart';
 import 'package:kdrama_db/model/kdrama.dart';
 import 'package:kdrama_db/coming_soon.dart';
+import 'package:kdrama_db/my-list.dart';
  
 class MainScreen extends StatelessWidget {
   final ButtonStyle flatButtonStyle = TextButton.styleFrom(
@@ -19,16 +20,22 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor:  Color.fromARGB(255, 209, 190, 19),
+        child: Icon(Icons.domain_verification),
+        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) {return MyListPage();}))
+      ),
       appBar: AppBar(
           title: const Text('KDrama DB'),
           actions: <Widget>[
+              
                 TextButton(
                   style: flatButtonStyle,
                   onPressed: () {
                      Navigator.push(context, MaterialPageRoute(builder: (context) {return CarouselWithIndicatorDemo();}));
                     }, 
                   child: const Text('Coming Soon'),                
-                )
+                ),
           ],
           
       ),
@@ -70,7 +77,7 @@ class MainScreen extends StatelessWidget {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {return CarouselWithIndicatorDemo();}));
                },
               leading: const Icon(
-                Icons.play_arrow_rounded,
+                Icons.watch_later_outlined,
                 size: 20
               ),
               title: const Text('Coming Soon',
@@ -79,9 +86,23 @@ class MainScreen extends StatelessWidget {
                 ),
               ),
             ),
+             ListTile(
+               onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {return MyListPage();}));
+               },
+              leading: const Icon(
+                Icons.done,
+                size: 20
+              ),
+              title: const Text('My List',
+                style: TextStyle(
+                  fontSize: 20
+                ),
+              ),
+            ),
             ListTile(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {return About();}));
+                Navigator.push(context, MaterialPageRoute(builder: (context) {return AboutPage();}));
               },
               leading: const Icon(
                 Icons.info,
@@ -93,6 +114,7 @@ class MainScreen extends StatelessWidget {
                 ),
               ),
             ),
+           
           ],
         ),
        ),
@@ -267,4 +289,6 @@ class KdramaGrid extends StatelessWidget {
     );
   }
 }
+
+
 

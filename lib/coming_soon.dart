@@ -29,13 +29,11 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
           title: const Text('KDrama DB'),
           automaticallyImplyLeading: false,
           leading: IconButton (
-                        icon: Icon(Icons.arrow_back), 
-                        onPressed: () {Navigator.pop(context);
-                              /** Do something */ 
-                        },
+                      icon: Icon(Icons.arrow_back), 
+                      onPressed: () {Navigator.pop(context);
+                      },
                     ),
       ),
-      // 
       body: Column(children: [
         Expanded(
           child: CarouselSlider(
