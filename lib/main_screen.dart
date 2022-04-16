@@ -60,7 +60,6 @@ class MainScreen extends StatelessWidget {
             ListTile(
               onTap: () {
                 Navigator.of(context).pop();
-                // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MainScreen()));
               },
               leading: const Icon(
                 Icons.home,
@@ -136,7 +135,6 @@ class MainScreen extends StatelessWidget {
     );
   }
 }
-
 
 class KdramaList extends StatelessWidget {
   @override

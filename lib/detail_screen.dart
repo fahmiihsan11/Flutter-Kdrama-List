@@ -35,12 +35,7 @@ class DetailMobilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor:  Color.fromARGB(255, 209, 190, 19),
-      //   child: Icon(Icons.domain_verification),
-      //   onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) {return MyList(totalList: totalList)}))
-      // ),
-       appBar: AppBar(
+      appBar: AppBar(
           title: const Text('K-Drama'),
           automaticallyImplyLeading: false,
           leading: IconButton (
