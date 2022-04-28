@@ -5,9 +5,11 @@ import 'package:kdrama_db/model/kdrama.dart';
 import 'package:kdrama_db/coming_soon.dart';
 
 var total = 0;
+bool _isPressed = false;
 
 class MyList extends StatefulWidget {
   final int totalList;
+  
 
   const MyList({required this.totalList});
 
@@ -19,15 +21,20 @@ class MyList extends StatefulWidget {
 class _ListState extends State<MyList> {
   @override
   Widget build(BuildContext context) {
+  
+  void _myCallback() {
+    setState(() {
+      _isPressed = true;
+      total = total + 1;
+    });
+  }
+
    return Container(
      child: Column(
        children: [
           ElevatedButton(
-            onPressed: () { 
-              setState(() {
-                total = total + 1;
-              });
-              },
+            onPressed: _myCallback,
+            // _isPressed == false ? _myCallback : null,
             child: Text('+ Add to My List'), 
           ),
           Card(

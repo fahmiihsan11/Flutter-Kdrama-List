@@ -9,6 +9,7 @@ class DramaItem {
   String openTime;
   String streamApp;
   String imageAsset;
+  bool list;
  
  
   DramaItem({
@@ -22,6 +23,7 @@ class DramaItem {
     required this.openTime,
     required this.streamApp,
     required this.imageAsset,
+    required this.list
     
   });
 }
@@ -39,6 +41,7 @@ var dramaList = [
     openTime: '21:00',
     streamApp: 'Netflix',
     imageAsset: 'images/businessProposal.jpg',
+    list: false
    
   ),
   DramaItem(
@@ -53,6 +56,7 @@ var dramaList = [
     openTime: '21:00',
     streamApp: 'Netflix',
     imageAsset: 'images/hometown.jpg',
+    list: false
     
   ),
   DramaItem(
@@ -67,6 +71,7 @@ var dramaList = [
     openTime: '21:00',
     streamApp: 'Netflix',
     imageAsset: 'images/hospital-playlist2.jpg',
+    list: false
    
   ),
   DramaItem(
@@ -81,6 +86,7 @@ var dramaList = [
     openTime: '21:00',
     streamApp: 'Netflix',
     imageAsset: 'images/startUp.jpg',
+    list: false
    
   ),
   DramaItem(
@@ -95,6 +101,7 @@ var dramaList = [
     openTime: '21:00',
     streamApp: 'Netflix',
     imageAsset: 'images/vincenzo.jpg',
+    list: false
    
   ),
   DramaItem(
@@ -109,6 +116,7 @@ var dramaList = [
     openTime: '21:00',
     streamApp: 'Netflix',
     imageAsset: 'images/thirtynine.jpg',
+    list: false
    
   ),
   DramaItem(
@@ -123,6 +131,7 @@ var dramaList = [
     openTime: '21:00',
     streamApp: 'Netflix',
     imageAsset: 'images/crashLandingOnYou.jpg',
+    list: false
     
   ),
   DramaItem(
@@ -137,6 +146,7 @@ var dramaList = [
     openTime: '21:00',
     streamApp: 'Netflix',
     imageAsset: 'images/itaewon-class.jpg',
+    list: false
     
   ),
 
@@ -152,6 +162,7 @@ var dramaList = [
     openTime: '21:00',
     streamApp: 'Disney+ Hotstar',
     imageAsset: 'images/soundtrack1.jpg',
+    list: false
   ),
 
     DramaItem(
@@ -166,6 +177,7 @@ var dramaList = [
     openTime: '21:00',
     streamApp: 'Netflix',
     imageAsset: 'images/tomorrow.jpg',
+    list: false
   ),
 
    DramaItem(
@@ -180,6 +192,7 @@ var dramaList = [
     openTime: '21:00',
     streamApp: 'Disney+ Hotstar',
     imageAsset: 'images/snowdrop.jpg',
+    list: false
   ),
 
   DramaItem(
@@ -194,6 +207,7 @@ var dramaList = [
     openTime: '21:00',
     streamApp: 'Netflix',
     imageAsset: 'images/squid-game.jpg',
+    list: false
    
   ),
 ];

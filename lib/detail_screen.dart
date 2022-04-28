@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:kdrama_db/model/kdrama.dart';
 
 import 'model/kdrama.dart';
@@ -144,6 +142,7 @@ class DetailMobilePage extends StatelessWidget {
 
 class DetailWebPage extends StatefulWidget {
   final DramaItem place;
+   bool _isPressed = false;
 
   DetailWebPage({required this.place});
 
@@ -165,7 +164,15 @@ class _DetailWebPageState extends State<DetailWebPage> {
         onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) {return MyListPage();}))
       ),
 
-      appBar: kIsWeb ? null : AppBar(),
+      appBar: AppBar(
+          title: const Text('Detail'),
+          automaticallyImplyLeading: false,
+          leading: IconButton (
+                        icon: Icon(Icons.arrow_back), 
+                        onPressed: () {Navigator.pop(context);
+                        },
+                    ),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: 16,
@@ -316,6 +323,7 @@ class RateButton extends StatefulWidget {
 
 class _RateButtonState extends State<RateButton> {
   bool isLike = false;
+ 
 
   @override
   Widget build(BuildContext context) {
