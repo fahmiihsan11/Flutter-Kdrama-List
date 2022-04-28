@@ -26,9 +26,9 @@ class MainScreen extends StatelessWidget {
         onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) {return MyListPage();}))
       ),
       appBar: AppBar(
-          title: const Text('KDrama DB'),
+          title: const Text('KDrama List'),
+          backgroundColor:  Color.fromARGB(255, 127, 127, 127),
           actions: <Widget>[
-              
                 TextButton(
                   style: flatButtonStyle,
                   onPressed: () {
@@ -37,7 +37,6 @@ class MainScreen extends StatelessWidget {
                   child: const Text('Coming Soon'),                
                 ),
           ],
-          
       ),
       drawer: Drawer(
         child: Column(
