@@ -26,7 +26,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('KDrama DB'),
+          title: const Text('Coming Soon'),
           automaticallyImplyLeading: false,
           leading: IconButton (
                       icon: Icon(Icons.arrow_back), 

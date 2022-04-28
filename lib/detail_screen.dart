@@ -34,7 +34,7 @@ class DetailMobilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('K-Drama'),
+          title: const Text('Detail'),
           automaticallyImplyLeading: false,
           leading: IconButton (
                         icon: Icon(Icons.arrow_back), 
@@ -184,13 +184,6 @@ class _DetailWebPageState extends State<DetailWebPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const Text(
-                  'K-Drama',
-                  style: TextStyle(
-                    fontFamily: 'Staatliches',
-                    fontSize: 32,
-                  ),
-                ),
                 SizedBox(height: 32),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
